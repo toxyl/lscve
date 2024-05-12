@@ -46,7 +46,7 @@ $ lscve newest 10 by kev
     CVE-2023-48788  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.56, EPSS ranking: 0.98, 2024-03-12T15:15:46, CPEs:   0, References:   1, Known Exploited Vulnerability, Ransomware Campaign: Known)
 ```
   
-### Find 10 Python CVEss
+### Find Last 10 Python CVEs Sorted By CVSS (Desc)
 ```bash
 $ lscve find 10 by cvss where product = python
 ``` 
@@ -63,21 +63,21 @@ $ lscve find 10 by cvss where product = python
     CVE-2023-6507   (Severity: medium,   CVSS: 4.9, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.25, 2023-12-08T19:15:08, CPEs:   0, References:   5)
 ```
 
-### Find First 10 CVEs In January 2024
+### Find Top 10 CVEs By EPSS In January 2024 Sorted By CVSS (Asc)
 ```bash
-$ lscve find 10 by cvss where date = 2024-01-01 to 2024-01-31
+$ lscve find-epss 10 by cvss_asc where date = 2024-01-01 to 2024-01-31
 ```
 ```
-    CVE-2024-23653  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.29, 2024-01-31T22:15:54, CPEs:   0, References:   3)
-    CVE-2022-47072  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.32, 2024-01-31T21:15:08, CPEs:   0, References:   1)
-    CVE-2024-23652  (Severity: CRITICAL, CVSS: 9.1, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.21, 2024-01-31T22:15:54, CPEs:   0, References:   3)
-    CVE-2024-24573  (Severity: high,     CVSS: 8.8, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.18, 2024-01-31T23:15:08, CPEs:   0, References:   2)
-    CVE-2024-24747  (Severity: high,     CVSS: 8.8, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.59, 2024-01-31T22:15:54, CPEs:   0, References:   3)
-    CVE-2024-21626  (Severity: high,     CVSS: 8.6, CVSSv2: ---, EPSS: 0.05, EPSS ranking: 0.93, 2024-01-31T22:15:53, CPEs:   0, References:   9)
-    CVE-2024-23651  (Severity: high,     CVSS: 7.4, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.29, 2024-01-31T22:15:54, CPEs:   0, References:   3)
-    CVE-2024-24572  (Severity: medium,   CVSS: 6.5, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.19, 2024-01-31T23:15:08, CPEs:   0, References:   2)
-    CVE-2024-24571  (Severity: medium,   CVSS: 5.4, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.13, 2024-01-31T23:15:08, CPEs:   0, References:   2)
-    CVE-2024-23650  (Severity: medium,   CVSS: 5.3, CVSSv2: ---, EPSS: 0.00, EPSS ranking: 0.20, 2024-01-31T22:15:53, CPEs:   0, References:   3)
+    CVE-2023-7028   (Severity: high,     CVSS: 7.5, CVSSv2: ---, EPSS: 0.95, EPSS ranking: 0.99, 2024-01-12T14:15:49, CPEs:   0, References:   3, Known Exploited Vulnerability, Ransomware Campaign: Unknown)
+    CVE-2023-6567   (Severity: high,     CVSS: 7.5, CVSSv2: ---, EPSS: 0.20, EPSS ranking: 0.96, 2024-01-11T09:15:49, CPEs:   0, References:   2)
+    CVE-2023-46805  (Severity: high,     CVSS: 8.2, CVSSv2: ---, EPSS: 0.97, EPSS ranking: 1.00, 2024-01-12T17:15:09, CPEs:   0, References:   2, Known Exploited Vulnerability, Ransomware Campaign: Unknown)
+    CVE-2024-21893  (Severity: high,     CVSS: 8.2, CVSSv2: ---, EPSS: 0.96, EPSS ranking: 1.00, 2024-01-31T18:15:47, CPEs:   0, References:   1, Known Exploited Vulnerability, Ransomware Campaign: Unknown)
+    CVE-2024-21887  (Severity: CRITICAL, CVSS: 9.1, CVSSv2: ---, EPSS: 0.97, EPSS ranking: 1.00, 2024-01-12T17:15:10, CPEs:   0, References:   2, Known Exploited Vulnerability, Ransomware Campaign: Unknown)
+    CVE-2024-23897  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.96, EPSS ranking: 0.99, 2024-01-24T18:15:09, CPEs:   0, References:   4)
+    CVE-2024-0204   (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.50, EPSS ranking: 0.98, 2024-01-22T18:15:20, CPEs:   0, References:   4)
+    CVE-2023-6634   (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.20, EPSS ranking: 0.96, 2024-01-11T09:15:50, CPEs:   0, References:   2)
+    CVE-2023-51972  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.16, EPSS ranking: 0.96, 2024-01-10T13:15:48, CPEs:   0, References:   1)
+    CVE-2023-22527  (Severity: CRITICAL, CVSS: 10.0, CVSSv2: ---, EPSS: 0.97, EPSS ranking: 1.00, 2024-01-16T05:15:08, CPEs:   0, References:   3, Known Exploited Vulnerability, Ransomware Campaign: Known)
 ```
 
 ### Get CVE Details
