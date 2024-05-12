@@ -32,6 +32,7 @@ Usage:    %s [cve-id]
           %s %s [limit] <by [kev|epss]>
           %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
           %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
+          %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
 Examples: %s %s
           %s %s %s
           %s %s %s by %s
@@ -39,19 +40,22 @@ Examples: %s %s
           %s %s %s by %s where %s = %s
           %s %s %s by %s where %s = %s
           %s %s %s by %s where %s = %s
+          %s %s %s by %s where %s = %s
 `,
 		exe,
 		exe,
-		exe, "newest  ",
-		exe, "find    ",
-		exe, "find-kev",
+		exe, "newest   ",
+		exe, "find     ",
+		exe, "find-kev ",
+		exe, "find-epss",
 		exe, "CVE-2016-10087",
-		exe, "newest  ", "10",
-		exe, "newest  ", "10", "kev",
-		exe, "find    ", "10", "cvss             ", "date   ", "2023-01-01", "2023-12-31",
-		exe, "find    ", "10", "epss             ", "product", "php",
-		exe, "find    ", "10", "epss_asc         ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
-		exe, "find-kev", "10", "epss-ranking_asc ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
+		exe, "newest   ", "10",
+		exe, "newest   ", "10", "kev",
+		exe, "find     ", "10", "cvss             ", "date   ", "2023-01-01", "2023-12-31",
+		exe, "find     ", "10", "epss             ", "product", "php",
+		exe, "find     ", "10", "epss_asc         ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
+		exe, "find-kev ", "10", "epss-ranking_asc ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
+		exe, "find-epss", "10", "epss-ranking_asc ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
 	)
 }
 
@@ -183,6 +187,12 @@ func main() {
 		searchKEV = true
 	}
 
+	sortByEPSS := false
+	if strings.ToLower(op) == "find-epss" {
+		op = "find"
+		sortByEPSS = true
+	}
+
 	if strings.ToLower(op) == "find" {
 		if len(os.Args) >= 9 {
 			limit := os.Args[2]
@@ -201,13 +211,13 @@ func main() {
 			var list *cves.CVEs
 			switch strings.ToLower(os.Args[6]) {
 			case "product":
-				list = cves.FindByProduct(os.Args[8], limit, searchKEV)
+				list = cves.FindByProduct(os.Args[8], limit, searchKEV, sortByEPSS)
 
 			case "cpe23":
-				list = cves.FindByCPE23(os.Args[8], limit, searchKEV)
+				list = cves.FindByCPE23(os.Args[8], limit, searchKEV, sortByEPSS)
 
 			case "date":
-				list = cves.FindByDate(os.Args[8], os.Args[10], limit, searchKEV)
+				list = cves.FindByDate(os.Args[8], os.Args[10], limit, searchKEV, sortByEPSS)
 
 			default:
 				die("Unknown field")

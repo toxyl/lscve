@@ -64,26 +64,35 @@ func getFromURL(url string) *CVE {
 
 func FindCVE(cve string) *CVE { return getFromURL(makeURL(fmt.Sprintf("cve/%s", cve))) }
 
-func FindByProduct(product, limit string, searchKEV bool) *CVEs {
+func FindByProduct(product, limit string, searchKEV, sortByEPSS bool) *CVEs {
 	args := []urlArg{{"product", product}, {"skip", "0"}, {"limit", limit}}
 	if searchKEV {
 		args = append(args, urlArg{"is_kev", "true"})
 	}
-	return getListFromURL(makeURL("cves", args...))
-}
-
-func FindByDate(start, end, limit string, searchKEV bool) *CVEs {
-	args := []urlArg{{"start_date", start}, {"end_date", end}, {"skip", "0"}, {"limit", limit}}
-	if searchKEV {
-		args = append(args, urlArg{"is_kev", "true"})
+	if sortByEPSS {
+		args = append(args, urlArg{"sort_by_epss", "true"})
 	}
 	return getListFromURL(makeURL("cves", args...))
 }
 
-func FindByCPE23(cpe23, limit string, searchKEV bool) *CVEs {
+func FindByDate(start, end, limit string, searchKEV, sortByEPSS bool) *CVEs {
+	args := []urlArg{{"start_date", start}, {"end_date", end}, {"skip", "0"}, {"limit", limit}}
+	if searchKEV {
+		args = append(args, urlArg{"is_kev", "true"})
+	}
+	if sortByEPSS {
+		args = append(args, urlArg{"sort_by_epss", "true"})
+	}
+	return getListFromURL(makeURL("cves", args...))
+}
+
+func FindByCPE23(cpe23, limit string, searchKEV, sortByEPSS bool) *CVEs {
 	args := []urlArg{{"cpe23", cpe23}, {"skip", "0"}, {"limit", limit}}
 	if searchKEV {
 		args = append(args, urlArg{"is_kev", "true"})
+	}
+	if sortByEPSS {
+		args = append(args, urlArg{"sort_by_epss", "true"})
 	}
 	return getListFromURL(makeURL("cves", args...))
 }
