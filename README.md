@@ -1,5 +1,5 @@
 # lscve
-CLI utility to query Shodan's CVE DB
+CLI utility to query Shodan's [CVE DB](https://cvedb.shodan.io/).
 
 ## Installing
 ```bash
