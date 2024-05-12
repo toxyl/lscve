@@ -17,7 +17,8 @@ Usage:    lscve [cve-id]
           lscve find      [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
           lscve find-kev  [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
           lscve find-epss [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
-Examples: lscve CVE-2016-10087
+          lscve cpes      [limit]  [product]
+Examples: lscve CVE-2021-44228
           lscve newest    10
           lscve newest    10 by kev
           lscve find      10 by cvss              where date    = 2023-01-01 to 2023-12-31
@@ -25,7 +26,7 @@ Examples: lscve CVE-2016-10087
           lscve find      10 by epss_asc          where cpe23   = cpe:2.3:a:libpng:libpng:0.8
           lscve find-kev  10 by epss-ranking_asc  where cpe23   = cpe:2.3:a:libpng:libpng:0.8
           lscve find-epss 10 by epss-ranking_asc  where cpe23   = cpe:2.3:a:libpng:libpng:0.8
-
+          lscve cpes      10 macos
 ```
 
 ## Examples
@@ -78,6 +79,89 @@ $ lscve find-epss 10 by cvss_asc where date = 2024-01-01 to 2024-01-31
     CVE-2023-6634   (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.20, EPSS ranking: 0.96, 2024-01-11T09:15:50, CPEs:   0, References:   2)
     CVE-2023-51972  (Severity: CRITICAL, CVSS: 9.8, CVSSv2: ---, EPSS: 0.16, EPSS ranking: 0.96, 2024-01-10T13:15:48, CPEs:   0, References:   1)
     CVE-2023-22527  (Severity: CRITICAL, CVSS: 10.0, CVSSv2: ---, EPSS: 0.97, EPSS ranking: 1.00, 2024-01-16T05:15:08, CPEs:   0, References:   3, Known Exploited Vulnerability, Ransomware Campaign: Known)
+```
+
+### Get CPEs Of All MacOS Products
+```bash
+$ lscve cpes 0 macos
+```
+```
+    cpe:2.3:o:apple:macos:1.0
+    cpe:2.3:o:apple:macos:10.15.7
+    cpe:2.3:o:apple:macos:11.0
+    cpe:2.3:o:apple:macos:11.0.1
+    cpe:2.3:o:apple:macos:11.1
+    cpe:2.3:o:apple:macos:11.1.0
+    cpe:2.3:o:apple:macos:11.2
+    cpe:2.3:o:apple:macos:11.2.1
+    cpe:2.3:o:apple:macos:11.3
+    cpe:2.3:o:apple:macos:11.3.1
+    cpe:2.3:o:apple:macos:11.4
+    cpe:2.3:o:apple:macos:11.5
+    cpe:2.3:o:apple:macos:11.6
+    cpe:2.3:o:apple:macos:11.6.1
+    cpe:2.3:o:apple:macos:11.6.2
+    cpe:2.3:o:apple:macos:11.6.3
+    cpe:2.3:o:apple:macos:11.6.5
+    cpe:2.3:o:apple:macos:11.6.6
+    cpe:2.3:o:apple:macos:11.6.7
+    cpe:2.3:o:apple:macos:11.6.8
+    cpe:2.3:o:apple:macos:11.7
+    cpe:2.3:o:apple:macos:11.7.1
+    cpe:2.3:o:apple:macos:11.7.2
+    cpe:2.3:o:apple:macos:11.7.3
+    cpe:2.3:o:apple:macos:11.7.5
+    cpe:2.3:o:apple:macos:11.7.7
+    cpe:2.3:o:apple:macos:11.7.9
+    cpe:2.3:o:apple:macos:12.0
+    cpe:2.3:o:apple:macos:12.0.0
+    cpe:2.3:o:apple:macos:12.0.1
+    cpe:2.3:o:apple:macos:12.1
+    cpe:2.3:o:apple:macos:12.2
+    cpe:2.3:o:apple:macos:12.2.1
+    cpe:2.3:o:apple:macos:12.3
+    cpe:2.3:o:apple:macos:12.4
+    cpe:2.3:o:apple:macos:12.5
+    cpe:2.3:o:apple:macos:12.6
+    cpe:2.3:o:apple:macos:12.6.1
+    cpe:2.3:o:apple:macos:12.6.2
+    cpe:2.3:o:apple:macos:12.6.3
+    cpe:2.3:o:apple:macos:12.6.4
+    cpe:2.3:o:apple:macos:12.6.6
+    cpe:2.3:o:apple:macos:12.6.7
+    cpe:2.3:o:apple:macos:12.6.8
+    cpe:2.3:o:apple:macos:12.7
+    cpe:2.3:o:apple:macos:12.7.2
+    cpe:2.3:o:apple:macos:12.7.3
+    cpe:2.3:o:apple:macos:13.0
+    cpe:2.3:o:apple:macos:13.0.1
+    cpe:2.3:o:apple:macos:13.1
+    cpe:2.3:o:apple:macos:13.2
+    cpe:2.3:o:apple:macos:13.3
+    cpe:2.3:o:apple:macos:13.3.3
+    cpe:2.3:o:apple:macos:13.4
+    cpe:2.3:o:apple:macos:13.5
+    cpe:2.3:o:apple:macos:13.6
+    cpe:2.3:o:apple:macos:13.6.1
+    cpe:2.3:o:apple:macos:13.6.2
+    cpe:2.3:o:apple:macos:13.6.3
+    cpe:2.3:o:apple:macos:13.6.4
+    cpe:2.3:o:apple:macos:14.0
+    cpe:2.3:o:apple:macos:14.1
+    cpe:2.3:o:apple:macos:14.1.1
+    cpe:2.3:o:apple:macos:14.1.2
+    cpe:2.3:o:apple:macos:14.2
+    cpe:2.3:o:apple:macos:14.2.1
+    cpe:2.3:o:apple:macos:14.3
+    cpe:2.3:o:apple:macos:7.5.3
+    cpe:2.3:o:apple:macos:7.6
+    cpe:2.3:o:apple:macos:7.6.1
+    cpe:2.3:o:apple:macos:8.0
+    cpe:2.3:o:apple:macos:8.1
+    cpe:2.3:o:apple:macos:8.5
+    cpe:2.3:o:apple:macos:8.6
+    cpe:2.3:o:apple:macos:9
+    cpe:2.3:o:apple:macos:9.0
 ```
 
 ### Get CVE Details

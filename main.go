@@ -33,6 +33,7 @@ Usage:    %s [cve-id]
           %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
           %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
           %s %s [limit]  by [id|cvss|cvssv2|epss|epss-ranking|published]<_asc> where [date|product|cpe23] = [start_date to end_date|product|cpe23]
+          %s %s [limit]  [product]
 Examples: %s %s
           %s %s %s
           %s %s %s by %s
@@ -41,6 +42,7 @@ Examples: %s %s
           %s %s %s by %s where %s = %s
           %s %s %s by %s where %s = %s
           %s %s %s by %s where %s = %s
+          %s %s %s %s
 `,
 		exe,
 		exe,
@@ -48,6 +50,7 @@ Examples: %s %s
 		exe, "find     ",
 		exe, "find-kev ",
 		exe, "find-epss",
+		exe, "cpes     ",
 		exe, "CVE-2016-10087",
 		exe, "newest   ", "10",
 		exe, "newest   ", "10", "kev",
@@ -56,6 +59,7 @@ Examples: %s %s
 		exe, "find     ", "10", "epss_asc         ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
 		exe, "find-kev ", "10", "epss-ranking_asc ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
 		exe, "find-epss", "10", "epss-ranking_asc ", "cpe23  ", "cpe:2.3:a:libpng:libpng:0.8",
+		exe, "cpes     ", "10", "macos",
 	)
 }
 
@@ -126,15 +130,11 @@ func main() {
 		}
 
 		for _, product := range products {
-			parts := strings.Split(product, ":")
-			for i, p := range parts {
-				parts[i] = glog.Auto(p)
-			}
 			versions := cpes[product]
 			for i, v := range versions {
 				versions[i] = glog.Auto(v)
 			}
-			res += "- " + strings.Join(parts, ":") + ":\n"
+			res += "- " + utils.AutoColorList(product, ":") + ":\n"
 			res += "  " + utils.WordWrap(strings.Join(versions, ", "), 120, "  ") + "\n\n"
 		}
 		res += "\n"
@@ -240,6 +240,13 @@ func main() {
 			}
 
 			log.Blank(list.String())
+			return
+		}
+	}
+
+	if strings.ToLower(op) == "cpes" {
+		if len(os.Args) == 4 {
+			log.Blank(cves.ProductCPEs(os.Args[3], os.Args[2]).String())
 			return
 		}
 	}
