@@ -26,7 +26,7 @@ Examples: lscve CVE-2021-44228
           lscve find      10 by epss_asc          where cpe23   = cpe:2.3:a:libpng:libpng:0.8
           lscve find-kev  10 by epss-ranking_asc  where cpe23   = cpe:2.3:a:libpng:libpng:0.8
           lscve find-epss 10 by epss-ranking_asc  where cpe23   = cpe:2.3:a:libpng:libpng:0.8
-          lscve cpes      10 macos
+          lscve cpes      0 macos
 ```
 
 ## Examples
